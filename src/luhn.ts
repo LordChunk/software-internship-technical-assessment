@@ -11,32 +11,32 @@ const parseInput = (rawInput: string): void => {
   }
 
   const inputList = input.split('').map(Number);
+
   // Do not accept single digit numbers
   if (inputList.length === 1) {
     exit(42, 'Input is a single digit');
   }
 
   let totalSum = 0;
-  // Double every second digit from right to left
+  // Perform Luhn algorithm
   inputList.forEach((value, index) => {
-    if(index % 2 === 0) {
-      const doubled = value * 2;
-
+    if(index % 2 !== 0) {
+      let doubled = value * 2;
       // If doubled is greater than 9, subtract 9
       if (doubled > 9) {
         totalSum -= 9;
-      }
+      }      
       totalSum += doubled;
+    } else {
+      totalSum += value;
     }
   });
   
-  // if totalSum is divisible by 10, then the number is valid
   if (totalSum % 10 !== 0) {
     exit(42, 'Your credit card number is invalid');
   }
 
-  // console.log('The number is valid');
-  process.exit(0);
+  exit(0, '✅💸 Your credit card number is valid');
 }
 
 const exit = (exitCode: number, message?: string) => {
