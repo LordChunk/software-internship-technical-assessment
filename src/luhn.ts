@@ -1,4 +1,4 @@
-const parseInput = (rawInput: string): void => {
+const luhn = (rawInput: string): void => {
   // Remove whitespace
   const input = rawInput.replace(/\s/g, '');
 
@@ -49,4 +49,4 @@ const exit = (exitCode: number, message?: string) => {
 }
 
 
-export default parseInput;
+export default luhn;
