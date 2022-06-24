@@ -1,14 +1,16 @@
 
-const parseInput = (stringInput: string): void => {
+const parseInput = (rawInput: string): void => {
+  // Remove whitespace
+  const input = rawInput.replace(/\s/g, '');
+
   if (
-    !Number.isInteger(Number(stringInput)) ||
-    Number(stringInput) % 1 !== 0
+    !Number.isInteger(Number(input)) ||
+    Number(input) % 1 !== 0
   ) { 
     exit(42, 'Input is not an integer');
   }
 
-  const inputList = stringInput.split('').map(Number);
-
+  const inputList = input.split('').map(Number);
   // Do not accept single digit numbers
   if (inputList.length === 1) {
     exit(42, 'Input is a single digit');
