@@ -1,9 +1,10 @@
-import readline from 'readline';
 import luhn from './luhn';
 
-let rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const stdin = process.stdin;
 
-rl.question('Please enter your credit card number.\n', luhn);
+console.log('Please enter your credit card number.');
+
+stdin.addListener('data', (data) => {
+  const input = data.toString().trim();
+  luhn(input);
+});

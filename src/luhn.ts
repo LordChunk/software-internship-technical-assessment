@@ -1,4 +1,3 @@
-
 const parseInput = (rawInput: string): void => {
   // Remove whitespace
   const input = rawInput.replace(/\s/g, '');
@@ -14,12 +13,13 @@ const parseInput = (rawInput: string): void => {
 
   // Do not accept single digit numbers
   if (inputList.length === 1) {
-    exit(42, 'Input is a single digit');
+    exit(42, 'Input cannot be a single digit');
   }
 
   let totalSum = 0;
   // Perform Luhn algorithm
-  inputList.forEach((value, index) => {
+  // flip array
+  inputList.reverse().forEach((value, index) => {
     if(index % 2 !== 0) {
       let doubled = value * 2;
       // If doubled is greater than 9, subtract 9
@@ -33,7 +33,7 @@ const parseInput = (rawInput: string): void => {
   });
   
   if (totalSum % 10 !== 0) {
-    exit(42, 'Your credit card number is invalid');
+    exit(42, '❌ Your credit card number is invalid');
   }
 
   exit(0, '✅💸 Your credit card number is valid');
